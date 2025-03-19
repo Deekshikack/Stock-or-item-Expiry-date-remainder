@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expiry Date Tracker - Login & Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .toggle {
+            margin-top: 10px;
+            color: blue;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="title">Expiry Date Tracker</div> <!-- Project Name Added -->
+
+    <div class="container">
+        <h2 id="formTitle">Login</h2>
+
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required><br>
+            <input type="password" id="password" placeholder="Password" required><br>
+            <button type="button" onclick="handleLogin()">Login</button>
+        </form>
+
+        <form id="registerForm" style="display: none;">
+            <input type="text" id="newUsername" placeholder="Username" required><br>
+            <input type="password" id="newPassword" placeholder="Password" required><br>
+            <button type="button" onclick="handleRegister()">Register</button>
+        </form>
+
+        <p class="toggle" onclick="toggleForms()">New user? Register here</p>
+    </div>
+
+    <script>
+        let isLogin = true;
+        const storedUser = { username: "testUser", password: "testPassword" }; // Hardcoded User
+
+        function toggleForms() {
+            isLogin = !isLogin;
+            document.getElementById("formTitle").innerText = isLogin ? "Login" : "Register";
+            document.getElementById("loginForm").style.display = isLogin ? "block" : "none";
+            document.getElementById("registerForm").style.display = isLogin ? "none" : "block";
+            document.querySelector(".toggle").innerText = isLogin ? "New user? Register here" : "Already have an account? Login here";
+        }
+
+        function handleLogin() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username === storedUser.username && password === storedUser.password) {
+                alert("✅ Login Successful!");
+            } else {
+                alert("❌ Invalid username or password!");
+            }
+        }
+
+        function handleRegister() {
+            alert("📝 Registration functionality will be added here.");
+        }
+    </script>
+
+</body>
+</html>
