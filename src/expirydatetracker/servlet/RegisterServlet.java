@@ -13,7 +13,6 @@ import java.io.BufferedReader;
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Read JSON input
         BufferedReader reader = req.getReader();
         StringBuilder requestBody = new StringBuilder();
         String line;
@@ -21,17 +20,14 @@ public class RegisterServlet extends HttpServlet {
             requestBody.append(line);
         }
 
-        // Convert request body to JSON
         JSONObject requestJson = new JSONObject(requestBody.toString());
         String username = requestJson.optString("username", "");
         String password = requestJson.optString("password", "");
 
-        // Mock response (No actual storage)
         JSONObject responseJson = new JSONObject();
         responseJson.put("status", "success");
         responseJson.put("message", "User registered successfully (Not stored)");
 
-        // Send response
         resp.setContentType("application/json");
         resp.getWriter().write(responseJson.toString());
     }

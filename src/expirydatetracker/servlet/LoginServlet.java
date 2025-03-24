@@ -13,7 +13,6 @@ import java.io.BufferedReader;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Read JSON input
         BufferedReader reader = req.getReader();
         StringBuilder requestBody = new StringBuilder();
         String line;
@@ -21,12 +20,10 @@ public class LoginServlet extends HttpServlet {
             requestBody.append(line);
         }
 
-        // Convert request body to JSON
         JSONObject requestJson = new JSONObject(requestBody.toString());
         String username = requestJson.optString("username", "");
         String password = requestJson.optString("password", "");
 
-        // Mock validation (Fixed username and password)
         JSONObject responseJson = new JSONObject();
         if ("ckdeekshi".equals(username) && "deekshi04".equals(password)) {
             responseJson.put("status", "success");
@@ -36,7 +33,6 @@ public class LoginServlet extends HttpServlet {
             responseJson.put("message", "Invalid credentials");
         }
 
-        // Send response
         resp.setContentType("application/json");
         resp.getWriter().write(responseJson.toString());
     }
